@@ -1,0 +1,62 @@
+/* Elementos que GSAP revela al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+}
+
+/* Efectos suaves en botones y enlaces */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navbar-button,
+.button-primary,
+.button-secondary,
+.color-option {
+  will-change: transform;
+}
+
+.navbar-button:hover {
+  transform: scale(1.04);
+}
+
+.navbar-button:active,
+.button-primary:active,
+.button-secondary:active {
+  transform: scale(0.97);
+}
+
+/* Aparición suave del menú */
+.nav-menu {
+  animation: menu-appear 0.22s ease both;
+}
+
+@keyframes menu-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Reduce el movimiento si el usuario lo tiene configurado */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
