@@ -10,7 +10,6 @@ asda
 
   ( imagenes proceso)
 
-  # xiaomi 18-pro-max v1.5
 
  
 
