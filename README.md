@@ -10,6 +10,7 @@ asda
  # xiaomi-18-pro-max v1
 
   ( imagenes proceso)
+  <https://github.com/iDanorever/xiaomi-18-pro-max/blob/1b6f8e783b15b5182410f18c4a50713f1bfdad5b/Prueba%20imagen%201%201%201.docx>
 
 
  
