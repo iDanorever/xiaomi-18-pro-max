@@ -133,33 +133,67 @@ button, a { font: inherit; }
 /* 2. Aplicamos la iluminación mejorada detrás del teléfono */
 .stage-glow {
   position: fixed;
-  right: 4%;
-  top: 20%;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 0;
-  width: min(50vw, 680px);
-  height: min(72vh, 740px);
-  border-radius: 50%;
-  /* Gradiente con centro rojo neón más vivo que se degrada suavemente hacia el negro */
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(237, 48, 56, 0.42) 0%,
-    rgba(181, 18, 27, 0.22) 40%,
-    transparent 70%
-  );
+  width: min(65vw, 800px);
+  height: min(75vh, 700px);
   pointer-events: none;
-  /* Conectamos la animación de pulso (dura 5 segundos en ciclo infinito) */
-  animation: glowPulse 5s ease-in-out infinite;
+  border-radius: 50%;
+  /* Gradiente multicapa: punto caliente de neón en el centro y dispersión infinita hacia el fondo */
+  background: 
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(237, 48, 56, 0.28) 0%,
+      rgba(181, 18, 27, 0.12) 35%,
+      rgba(237, 48, 56, 0.04) 60%,
+      transparent 80%
+    );
+  filter: blur(60px); /* Difuminado profundo para eliminar cualquier borde circular */
+  animation: ambientGlow 8s ease-in-out infinite alternate;
+}
+.stage-glow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 480px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(237, 48, 56, 0.45) 0%, transparent 70%);
+  filter: blur(40px);
+  border-radius: 40%;
+  opacity: 0.8;
+}
+
+@keyframes ambientGlow {
+  0% {
+    opacity: 0.6;
+    transform: translateY(-50%) scale(0.92);
+    filter: blur(60px);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-50%) scale(1.08);
+    filter: blur(75px);
+  }
+  100% {
+    opacity: 0.6;
+    transform: translateY(-50%) scale(0.92);
+    filter: blur(60px);
+  }
 }
 
  .device-stage {
 
   position: fixed;
-  right: 5%;
+  right: 6%;
   top: 50%;
   z-index: 5;
-  height: min(75vh, 600px); /* <--- Añade límite vertical */
+  height: min(65vh, 520px); /* Reducimos ligeramente la altura máxima */
   aspect-ratio: 0.52;
-  max-width: min(30vw, 360px); /* <--- Controla que no tape el texto */
+  max-width: min(28vw, 320px);
   transform: translateY(-50%);
   perspective: 1200px;
   pointer-events: none;
@@ -183,11 +217,11 @@ button, a { font: inherit; }
   padding: 120px 6vw 80px;
 }
 
-.scene-copy { max-width: 640px; }
+.scene-copy {max-width: min(520px, 45vw);}
 
 .scene-copy-center {
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
 }
 
 .eyebrow {
@@ -306,7 +340,7 @@ width: 100%;
   display: grid;
   place-content: center;
   text-align: center;
-  border-radius: 8% / 4%;
+  border-radius: 22px;
   background:
     radial-gradient(circle at 70% 20%, rgba(237, 48, 56, 0.35), transparent 40%),
     linear-gradient(180deg, #141414, #050505);
@@ -333,35 +367,49 @@ width: 100%;
   letter-spacing: 0.18em;
 }
 
- /*.camera-module {
+.camera-module,
+.camera-lens,
+.camera-sensor,
+
+.leica-row,
+.mini-lens,
+.flash,
+.charging-ring,
+.phone-circuit,
+.speaker-grille {
+  display: none !important;
+}
+
+.phone-img-render {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0px 15px 25px rgba(0, 0, 0, 0.8));
+}
+
+.phone-front {
   position: absolute;
-  z-index: 3;
-  top: 3.5%;
-  left: 6%;
-  width: 88%;
-  height: 27%;  <--- Reducido de 23% a 18% para no aplastar el teléfono 
-  border: 2px solid #200204;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(14, 8, 8, 0.98), rgba(69, 4, 5, 0.92));
-  box-shadow: inset 0 0 0 2px #6a0a0c, inset 0 0 15px #000;
-  transition: transform 0.6s ease;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  background: #050505;
+  border-radius: 28px;
   overflow: hidden;
-  } 
-*/
+  transition: opacity 0.4s ease;
+}
+
+
 
 .phone-render[data-view="macro"] .camera-module {
   transform: scale(1.15);
 }
 
-.camera-lens {
-  position: absolute;
-  left: 7%;
-  width: 23%; /* <--- Reducido de 29% a 25% para que no se vean gigantes */
-  aspect-ratio: 1;
-  border: 2px solid #050505;
-  border-radius: 50%;
-  background: radial-gradient(circle at 37% 30%, #6e8ed8 0 5%, #101735 7% 16%, #050608 35% 64%, #172331 66% 72%, #020202 74%);
-}
+
 
 .camera-lens:first-child { top: 7%; }
 .camera-lens:nth-child(2) { top: 51%; }
@@ -372,63 +420,16 @@ width: 100%;
   border-radius: 50%;
 }
 
-.camera-sensor {
-  position: absolute;
-  top: 20%;
-  right: 8%;
-  width: 28%;
-  height: 55%;
-  border: 2px solid #9e2024;
-  border-radius: 8%;
-  background: repeating-linear-gradient(0deg, rgba(255, 101, 80, 0.2) 0 1px, transparent 1px 5px), rgba(32, 4, 5, 0.8);
-}
 
-/*.leica-row {
-  position: absolute;
-  z-index: 4;
-  top: 30.5%;  <--- Sube del 27% al 22.5% para calzar impecable 
-  left: 6%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 68%;
-  height: 6.5%;
-  padding: 3px 8px;
-  border-radius: 8px;
-  background: rgba(106, 5, 8, 0.85);
-  color: #ffd1bd;
-}*/
 
-.mini-lens,
-.flash {
-  display: block;
-  width: 16px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #0d1114;
-  border: 2px solid #31090a;
-}
 
-.flash { background: radial-gradient(circle, #ffeab1, #bd9f62 45%, #353026); }
+
 
 .leica-row strong { font-size: clamp(7px, 0.8vw, 12px); letter-spacing: 0.08em; }
 .leica-row small { font-size: clamp(3px, 0.4vw, 6px); line-height: 1.05; }
 
-/* .charging-ring {
-  position: absolute;
-  z-index: 2;
-  top: 42%;
-  left: 16%;
-  width: 68%;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background:
-    repeating-radial-gradient(circle, transparent 0 3px, var(--body-1) 3px 4px),
-    radial-gradient(circle, var(--body-2) 0 61%, transparent 61.5%);
-}
-*/ 
+ 
+
 
 .charging-ring span {
   color: #f7c6b5;
@@ -437,17 +438,7 @@ width: 100%;
   letter-spacing: 0.14em;
 }
 
-/* .phone-circuit {
-  position: absolute;
-  z-index: 1;
-  left: 8%;
-  width: 84%;
-  height: 10%;
-  opacity: 0.7;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 16px, rgba(65, 0, 0, 0.7) 16px 18px),
-    repeating-linear-gradient(0deg, transparent 0 8px, rgba(255, 136, 108, 0.45) 8px 9px);
-}*/
+
 
 .circuit-top { top: 35%; }
 .circuit-bottom {
@@ -456,20 +447,9 @@ width: 100%;
   border: 2px solid rgba(59, 0, 0, 0.72);
 }
 
- .speaker-grille {
-  display: none !important
-}
 
-.color-options {
-  position: relative;
-  z-index: 6;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 36px;
-  max-width: 640px;
-  pointer-events: auto;
-}
+
+.color-options,
 
 .color-option {
   display: inline-flex;
@@ -504,13 +484,7 @@ width: 100%;
 .swatch-pink { background: #d46a86; }
 .swatch-blue { background: #1d3d6e; }
 
-.spec-note {
-  max-width: 640px;
-  margin-top: 22px;
-  color: #666;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-}
+.spec-note,
 
 .spec-list {
   margin: 28px 0 0;
@@ -536,12 +510,9 @@ width: 100%;
   text-transform: uppercase;
 }
 
-.spec-table {
-  width: min(640px, 100%);
-  margin-top: 28px;
-  border-collapse: collapse;
+.spec-table{
+  max-width: min(520px, 45vw);
 }
-
 .spec-table th,
 .spec-table td {
   padding: 14px 0;

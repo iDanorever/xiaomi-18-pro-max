@@ -131,11 +131,22 @@ document.querySelector('#app').innerHTML = `
         </div>
 
         <div class="color-options" aria-label="Seleccionar color del teléfono">
-          <button class="color-option active" type="button" style="--swatch: #292929" data-color="#292929" aria-label="Negro" aria-pressed="true"></button>
-          <button class="color-option" type="button" style="--swatch: #e9e5dc" data-color="#e9e5dc" aria-label="Blanco" aria-pressed="false"></button>
-          <button class="color-option" type="button" style="--swatch: #8b2734" data-color="#8b2734" aria-label="Rojo" aria-pressed="false"></button>
-          <button class="color-option" type="button" style="--swatch: #324c78" data-color="#324c78" aria-label="Azul" aria-pressed="false"></button>
-        </div>
+  <button class="color-option active" type="button" data-finish="red" aria-label="Rojo" aria-pressed="true">
+    <span class="swatch swatch-red"></span> Rojo
+  </button>
+  <button class="color-option" type="button" data-finish="black" aria-label="Negro" aria-pressed="false">
+    <span class="swatch swatch-black"></span> Negro
+  </button>
+  <button class="color-option" type="button" data-finish="white" aria-label="Blanco" aria-pressed="false">
+    <span class="swatch swatch-white"></span> Blanco
+  </button>
+  <button class="color-option" type="button" data-finish="pink" aria-label="Rosa" aria-pressed="false">
+    <span class="swatch swatch-pink"></span> Rosado
+  </button>
+  <button class="color-option" type="button" data-finish="blue" aria-label="Azul" aria-pressed="false">
+    <span class="swatch swatch-blue"></span> Azul
+  </button>
+</div>
       </div>
     </section>
   </main>
