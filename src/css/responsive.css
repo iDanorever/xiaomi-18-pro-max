@@ -1,0 +1,46 @@
+@media (max-width: 900px) {
+  .nav-label { display: none; }
+
+  .device-stage {
+    right: 4%;
+    top: auto;
+    bottom: 6%;
+    width: min(150px, 40vw);
+    transform: none;
+  }
+
+  .stage-glow {
+    right: 10%;
+    top: auto;
+    bottom: 0;
+    width: 70vw;
+    height: 40vh;
+    opacity: 0.4;
+  }
+
+  .scene {
+    min-height: auto;
+    padding: 110px 6vw 160px;
+  }
+
+  .scene-arrival { min-height: 100svh; }
+
+  h1 { font-size: clamp(46px, 13vw, 78px); }
+  h2 { font-size: clamp(34px, 10vw, 56px); }
+
+  .color-options { gap: 10px; }
+  .color-option { min-width: 0; }
+
+  .camera-samples { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .navbar { padding: 18px 5vw; }
+
+  .scene { padding: 96px 22px 64px; }
+
+  .scene-footer {
+    font-size: 8px;
+    gap: 12px;
+  }
+}

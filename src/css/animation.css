@@ -1,0 +1,44 @@
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.color-option,
+.explore,
+.menu-button {
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.color-option:hover,
+.explore:hover,
+.menu-button:hover {
+  transform: translateY(-1px);
+}
+
+.nav-menu:not([hidden]) {
+  animation: menu-appear 0.22s ease both;
+}
+
+@keyframes menu-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .red-line { transform: none; }
+}
