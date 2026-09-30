@@ -1,0 +1,83 @@
+@media (max-width: 800px) {
+  .navbar {
+    padding: 20px 5%;
+  }
+
+  .navbar-links {
+    gap: 18px;
+  }
+
+  .design-stage {
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  .design-copy {
+    max-width: 500px;
+    text-align: center;
+  }
+
+  .scene {
+    min-height: auto;
+    padding: 100px 6%;
+  }
+}
+
+@media (max-width: 560px) {
+  .navbar {
+    padding: 18px 5%;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .hero {
+    min-height: 100svh;
+    padding: 100px 18px 45px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 13vw, 64px);
+  }
+
+  .hero-subtitle {
+    max-width: 330px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .hero-phone {
+    width: min(250px, 65vw);
+    margin-top: 42px;
+    border-radius: 36px;
+  }
+
+  .hero-phone::after {
+    border-radius: 28px;
+  }
+
+  .scene {
+    padding: 80px 22px;
+  }
+
+  .scene h2 {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+
+  .scene-description {
+    font-size: 13px;
+  }
+
+  .design-device {
+    width: min(245px, 65vw);
+  }
+
+  .color-device {
+    width: min(220px, 60vw);
+  }
+}

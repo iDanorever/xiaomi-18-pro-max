@@ -1,0 +1,360 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+
+:root {
+  font-family: 'Manrope', sans-serif;
+  color: #fff;
+  background: #080808;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #080808;
+}
+
+button, a {
+  font: inherit;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 28px 6vw 24px;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse at 76% 50%,
+      rgba(160, 12, 20, 0.26),
+      transparent 45%
+    ),
+    #080808;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .18;
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.035) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.brand {
+  color: white;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: .15em;
+  text-decoration: none;
+}
+
+.nav-label {
+  color: #aaa;
+  font-size: 11px;
+  letter-spacing: .25em;
+}
+
+.menu-button {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+  border: 1px solid #393939;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-button span {
+  width: 14px;
+  height: 1px;
+  background: white;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin: auto 0;
+  padding: 50px 0;
+  max-width: 660px;
+}
+
+.eyebrow {
+  color: #ed3038;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .35em;
+}
+
+h1 {
+  margin: 22px 0;
+  font-size: clamp(54px, 8vw, 112px);
+  font-weight: 800;
+  letter-spacing: -.085em;
+  line-height: .94;
+}
+
+h1 span {
+  color: #ed3038;
+}
+
+.subtitle {
+  color: #b4b4b4;
+  font-size: 14px;
+  letter-spacing: .04em;
+}
+
+.explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 24px;
+  padding: 15px 20px;
+  color: white;
+  border: 1px solid #4b4b4b;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-decoration: none;
+  transition: background .25s, border-color .25s;
+}
+
+.explore:hover {
+  background: #b5121b;
+  border-color: #b5121b;
+}
+
+.explore span {
+  font-size: 16px;
+}
+
+/* módulo de cámaras: rectángulo redondeado con circuito de fondo */
+.phone-outline {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  width: 62%;
+  border-radius: 22px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,80,80,.12) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, rgba(255,80,80,.12) 0 1px, transparent 1px 5px),
+    linear-gradient(160deg, #1a0000, #050000);
+  border: 1px solid rgba(255,255,255,.15);
+  box-shadow: inset 0 0 14px rgba(0,0,0,.8);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* solo 2 lentes, apiladas verticalmente */
+.phone-outline {
+  flex-direction: column;
+  width: 44%;
+}
+
+.camera {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #5a5a5a, #0a0a0a 60%, #000);
+  border: 3px solid #1c1c1c;
+  box-shadow: 0 0 8px rgba(255,120,120,.35);
+}
+
+/* fila LEICA: flash + sensor + texto, debajo del módulo */
+.phone-outline::after {
+  content: "LEICA";
+  position: absolute;
+  left: 12px;
+  bottom: -34px;
+  display: flex;
+  align-items: center;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.75);
+}
+
+.placeholder-label {
+  display: none;
+}
+.phone-placeholder {
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 6px),
+    radial-gradient(circle at 50% 88%, rgba(255,120,120,.15), transparent 60%),
+    linear-gradient(155deg, #ff3b3b 0%, #b5121b 45%, #4a0006 85%, #2c0004 100%);
+}
+.hero-footer {
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 9px;
+  letter-spacing: .16em;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 22px 6vw;
+    min-height: 100svh;
+  }
+
+  .nav-label {
+    display: none;
+  }
+
+  .hero-content {
+    margin: 15vh 0 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: clamp(50px, 14vw, 82px);
+  }
+
+  .hero-footer {
+    margin-top: auto;
+    font-size: 8px;
+  }
+}
+
+/* Back of the device: the visual anchor for every product scene. */
+.phone-render {
+  position: relative;
+  isolation: isolate;
+  width: min(35vw, 420px);
+  aspect-ratio: 0.52;
+  filter: drop-shadow(28px 30px 26px rgba(0, 0, 0, .5));
+}
+
+.phone-shell {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 2px solid #9d1115;
+  border-radius: 11% 11% 9% 9% / 5% 5% 4% 4%;
+  background:
+    radial-gradient(circle at 50% 52%, transparent 0 22%, rgba(255, 91, 79, .12) 22.2% 22.5%, transparent 22.7%),
+    radial-gradient(circle at 50% 52%, rgba(255, 193, 164, .12), transparent 23%),
+    repeating-linear-gradient(0deg, rgba(255, 163, 135, .2) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(255, 150, 128, .13) 0 1px, transparent 1px 4px),
+    linear-gradient(135deg, #ff4b48 0%, #c91118 31%, #8b080d 67%, #d72523 100%);
+  box-shadow: inset 0 0 0 5px rgba(255, 86, 70, .48), inset 0 0 0 8px #590509, inset 0 0 22px rgba(255, 188, 160, .55);
+}
+
+.phone-shell::before,
+.phone-shell::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 147, 117, .55);
+  opacity: .75;
+}
+
+.phone-shell::before {
+  inset: 31% 8% 8%;
+  background: repeating-linear-gradient(90deg, transparent 0 13px, rgba(68, 0, 0, .3) 13px 14px), repeating-linear-gradient(0deg, transparent 0 10px, rgba(255, 156, 132, .22) 10px 11px);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.phone-shell::after {
+  top: 25%;
+  left: 7%;
+  width: 86%;
+  height: 25%;
+  background: repeating-linear-gradient(0deg, transparent 0 8px, rgba(255, 91, 74, .45) 8px 9px), repeating-linear-gradient(90deg, transparent 0 22px, rgba(48, 0, 0, .5) 22px 23px);
+  clip-path: polygon(0 8%, 28% 8%, 28% 0, 65% 0, 65% 26%, 100% 26%, 100% 100%, 0 100%);
+}
+
+.camera-module {
+  position: absolute;
+  z-index: 3;
+  top: 3.5%;
+  left: 6%;
+  width: 88%;
+  height: 23%;
+  border: 3px solid #200204;
+  border-radius: 12% 12% 18% 18%;
+  background: linear-gradient(135deg, rgba(14, 8, 8, .98), rgba(69, 4, 5, .92));
+  box-shadow: inset 0 0 0 3px #6a0a0c, inset 0 0 20px #000, 0 2px 7px rgba(0, 0, 0, .6);
+}
+
+.camera-lens {
+  position: absolute;
+  left: 8%;
+  width: 29%;
+  aspect-ratio: 1;
+  border: 3px solid #050505;
+  border-radius: 50%;
+  background: radial-gradient(circle at 37% 30%, #6e8ed8 0 5%, #101735 7% 16%, #050608 35% 64%, #172331 66% 72%, #020202 74%);
+  box-shadow: 0 0 0 2px #141414, 0 0 10px rgba(255, 91, 80, .3);
+}
+
+.camera-lens:first-child { top: 7%; }
+.camera-lens:nth-child(2) { top: 53%; }
+.camera-lens span { position: absolute; inset: 19%; border: 1px solid rgba(155, 189, 255, .36); border-radius: 50%; }
+.camera-sensor { position: absolute; top: 25%; right: 11%; width: 25%; height: 42%; border: 2px solid #9e2024; border-radius: 8%; background: repeating-linear-gradient(0deg, rgba(255, 101, 80, .2) 0 1px, transparent 1px 5px), rgba(32, 4, 5, .8); }
+
+.leica-row { position: absolute; z-index: 2; top: 27%; left: 7%; display: flex; align-items: center; gap: 7px; width: 72%; height: 7%; padding: 3px 5px; border-radius: 10px; background: rgba(106, 5, 8, .72); box-shadow: inset 0 0 10px rgba(255, 86, 64, .35); color: #ffd1bd; }
+.mini-lens, .flash { display: block; width: 16px; aspect-ratio: 1; border-radius: 50%; background: #0d1114; border: 2px solid #31090a; }
+.flash { background: radial-gradient(circle, #ffeab1, #bd9f62 45%, #353026); }
+.leica-row strong { font-size: clamp(7px, .8vw, 12px); letter-spacing: .08em; }
+.leica-row small { font-size: clamp(3px, .4vw, 6px); line-height: 1.05; }
+
+.charging-ring { position: absolute; z-index: 2; top: 42%; left: 16%; width: 68%; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: repeating-radial-gradient(circle, transparent 0 3px, rgba(255, 124, 99, .85) 3px 4px), radial-gradient(circle, #a80d12 0 61%, transparent 61.5%); box-shadow: 0 0 0 1px rgba(255, 176, 143, .4), inset 0 0 22px rgba(61, 0, 0, .6); }
+.charging-ring span { color: #f7c6b5; font-size: clamp(12px, 1.6vw, 24px); font-weight: 600; letter-spacing: .14em; }
+.phone-circuit { position: absolute; z-index: 1; left: 8%; width: 84%; height: 10%; opacity: .7; background: repeating-linear-gradient(90deg, transparent 0 16px, rgba(65, 0, 0, .7) 16px 18px), repeating-linear-gradient(0deg, transparent 0 8px, rgba(255, 136, 108, .45) 8px 9px); }
+.circuit-top { top: 35%; }
+.circuit-bottom { bottom: 5%; height: 11%; border: 2px solid rgba(59, 0, 0, .72); }
+.speaker-grille { position: absolute; z-index: 2; left: 36%; bottom: 6%; width: 28%; height: 4%; border: 1px solid #4b0508; background: radial-gradient(circle, #230206 0 35%, transparent 40%) 0 0 / 6px 6px; }
+
+.hero-phone { position: absolute; right: 10%; bottom: 7%; z-index: 1; transform: rotate(4deg); }
+.hero-content { width: min(52vw, 680px); max-width: 52vw; }
+.hero-phone { width: min(31vw, 380px); right: 8%; top: 15%; bottom: auto; }
+.design-device { width: min(29vw, 340px); margin: 0 auto; transform: rotate(-7deg); }
+.color-device { width: min(27vw, 320px); margin: 0 auto; --device-color: #c91118; }
+.color-device .phone-shell { filter: hue-rotate(var(--device-hue, 0deg)); }
+.color-options { display: flex; justify-content: center; gap: 14px; }
+
+@media (max-width: 700px) {
+  .hero-content { width: 100%; max-width: 100%; }
+  .phone-render { width: min(58vw, 280px); }
+  .hero-phone { width: min(46vw, 220px); right: 3%; top: auto; bottom: 10%; opacity: .68; }
+  .design-device, .color-device { width: min(62vw, 260px); }
+}

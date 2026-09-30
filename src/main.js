@@ -1,23 +1,49 @@
 import "./css/main.css";
 import "./css/animation.css";
 import "./css/responsive.css";
-import xiaomiRedImg from './assets/images/xiaomi-18-red.png';
+
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { phoneMarkup } from "./js/phone.js";
 import { initAnimations } from "./js/animations.js";
-import { initScenes } from "./js/scenes.js";
+import { initScenes, initAudioPlayer } from "./js/scenes.js"; // <-- ¡Unificado aquí para que cargue perfecto!
 import { initColorSelector } from "./js/color-selector.js";
+
+// Registrar plugins de GSAP de una sola vez
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 document.querySelector("#app").innerHTML = `
   <a class="skip-link" href="#arrival">Saltar al contenido</a>
 
+  <!-- NAVBAR CON WIDGET DE AUDIO DE STITCH -->
   <header class="navbar">
-    <a class="brand" href="#arrival">XIAOMI</a>
+    <a class="brand" href="#arrival">
+      XIAOMI <span class="brand-dot">•</span>
+    </a>
+    
     <span class="nav-label">18 PRO MAX</span>
-    <button class="menu-button" id="menu-button" type="button" aria-label="Abrir menú de escenas" aria-expanded="false" aria-controls="nav-menu">
-      <span></span>
-      <span></span>
-    </button>
+
+    <div class="nav-actions">
+      <button class="soundtrack-widget" id="audio-toggle" type="button" aria-label="Toggle Soundtrack">
+        <div class="eq-bars">
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+        </div>
+        <div class="soundtrack-text">
+          <span class="st-title">SOUNDTRACK</span>
+          <span class="st-status" id="eq-status">LIVE</span>
+        </div>
+      </button>
+
+      <button class="menu-button" id="menu-button" type="button" aria-label="Abrir menú de escenas" aria-expanded="false" aria-controls="nav-menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
   <nav class="nav-menu" id="nav-menu" hidden>
@@ -32,8 +58,9 @@ document.querySelector("#app").innerHTML = `
   </nav>
 
   <div class="red-line" aria-hidden="true"></div>
-  <div class="stage-glow" aria-hidden="true"></div>
+  <div class="stage-glow" id="stage-glow" aria-hidden="true"></div>
 
+  <!-- STAGE DEL TELÉFONO CON MARCO HUD DERECHO -->
   <aside class="device-stage" aria-hidden="true">
     <div class="device-motion">
       ${phoneMarkup({ id: "hero-phone", extraClass: "hero-phone" })}
@@ -47,23 +74,43 @@ document.querySelector("#app").innerHTML = `
   </aside>
 
   <main class="experience">
+    <!-- ESCENA 1: HERO / THE ARRIVAL -->
     <section class="scene scene-arrival" id="arrival" data-scene="arrival">
       <div class="scene-copy">
-        <p class="eyebrow">A NEW ERA BEGINS</p>
+        <p class="eyebrow"><span class="eyebrow-dash">—</span> A NEW ERA BEGINS</p>
         <h1 class="hero-title" aria-label="The future is in your hands.">
           <span class="line">THE FUTURE</span>
           <span class="line">IS IN YOUR</span>
           <span class="line accent letter-line"></span>
         </h1>
         <p class="subtitle">Xiaomi 18 Pro Max. Discover a new perspective.</p>
-        <a class="explore" href="#design">EXPLORE THE EXPERIENCE <span>↗</span></a>
+        
+        <div class="hero-actions">
+          <a class="explore" href="#design" id="explore-btn">
+            <span>EXPLORE THE EXPERIENCE</span>
+            <span class="arrow">↗</span>
+          </a>
+          <div class="sensor-badge">
+            <span class="dot-active"></span>
+            LEICA VARIO-SUMMICRON 200MP · 1" SENSOR
+          </div>
+        </div>
       </div>
+
       <div class="scene-footer">
-        <span>01 / THE ARRIVAL</span>
-        <a href="#design">SCROLL TO DISCOVER ↓</a>
+        <span class="footer-scene-id">01 / THE ARRIVAL</span>
+        <div class="footer-specs">
+          <span>CHIPSET: SNAPDRAGON 8 GEN 5</span>
+          <span class="divider">|</span>
+          <span>FINISH: CRIMSON TRANSLUCENT TITANIUM</span>
+        </div>
+        <a class="scroll-prompt" href="#design">
+          SCROLL TO DISCOVER <span class="arrow-down">↓</span>
+        </a>
       </div>
     </section>
 
+    <!-- ESCENA 2: THE DESIGN -->
     <section class="scene scene-design" id="design" data-scene="design">
       <div class="scene-copy">
         <p class="eyebrow">02 / THE DESIGN</p>
@@ -72,6 +119,7 @@ document.querySelector("#app").innerHTML = `
       </div>
     </section>
 
+    <!-- ESCENA 3: THE COLORS -->
     <section class="scene scene-colors" id="colors" data-scene="colors">
       <div class="scene-copy">
         <p class="eyebrow">03 / THE COLORS</p>
@@ -103,6 +151,7 @@ document.querySelector("#app").innerHTML = `
       <p class="spec-note">Colores preliminares (negro, blanco, rosa, azul y edición roja). Verificar variantes oficiales por región.</p>
     </section>
 
+    <!-- ESCENAS 04 A 08 -->
     <section class="scene scene-display" id="display" data-scene="display">
       <div class="scene-copy">
         <p class="eyebrow">04 / THE DISPLAY</p>
@@ -185,6 +234,89 @@ document.querySelector("#app").innerHTML = `
   </main>
 `;
 
+/**
+ * Navegación suave con transición de desvanecimiento y caída (Smooth Drop)
+ */
+function initSmoothDropNavigation() {
+  const anchors = document.querySelectorAll('a[href^="#"]');
+
+  anchors.forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      const targetId = anchor.getAttribute("href");
+      if (targetId === "#" || !targetId) return;
+
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) return;
+
+      e.preventDefault();
+
+      // Cerrar menú móvil si estuviera abierto
+      const navMenu = document.querySelector("#nav-menu");
+      if (navMenu && !navMenu.hasAttribute("hidden")) {
+        navMenu.setAttribute("hidden", "");
+      }
+
+      // Animación de Caída + Fade de la interfaz durante el scroll
+      gsap.to(window, {
+        duration: 1.5,
+        scrollTo: {
+          y: targetElement,
+          autoKill: false
+        },
+        ease: "power3.inOut"
+      });
+
+      // Micro-animación de desvanecimiento temporal en la vista al iniciar el salto
+      gsap.to(".experience", {
+        opacity: 0.8,
+        y: -10,
+        duration: 0.4,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut"
+      });
+    });
+  });
+}
+
+function initSceneFading() {
+  const scenes = document.querySelectorAll(".scene");
+
+  scenes.forEach((scene) => {
+    ScrollTrigger.create({
+      trigger: scene,
+      start: "top center",   // Cambiado para que active cuando la escena llegue al centro de la pantalla
+      end: "bottom center",  // Termine cuando salga del centro
+      scrub: true,              
+      onUpdate: (self) => {
+        const progress = self.progress;
+        
+        let currentOpacity = 1;
+        let currentScale = 1;
+
+        if (progress < 0.2) {
+          currentOpacity = gsap.utils.mapRange(0, 0.2, 0.2, 1, progress);
+          currentScale = gsap.utils.mapRange(0, 0.2, 0.97, 1, progress);
+        } else if (progress > 0.8) {
+          currentOpacity = gsap.utils.mapRange(0.8, 1, 1, 0.2, progress);
+          currentScale = gsap.utils.mapRange(0.8, 1, 1, 0.97, progress);
+        }
+
+        gsap.to(scene, {
+          opacity: currentOpacity,
+          scale: currentScale,
+          overwrite: "auto",
+          duration: 0.1
+        });
+      }
+    });
+  });
+}
+
+// Inicialización de componentes y módulos
+initAudioPlayer();
 initScenes();
 initColorSelector();
 initAnimations();
+initSmoothDropNavigation();
+initSceneFading();
