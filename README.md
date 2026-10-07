@@ -4,7 +4,8 @@ asda
  
    # xiaomi 18-pro-max v1.5
 
- <img src="">
+ <img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/804247bda36f93b03bd497e8750f9f311e5754c8/Screenshot%202026-10-07%20164757.png">
+ 
  (imagenes nuevas y cambios de telefono )
  
  # xiaomi-18-pro-max v1
