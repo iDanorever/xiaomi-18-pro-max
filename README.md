@@ -9,7 +9,7 @@
 
  
  <a href="./Documentacion_Tecnica_Xiaomi18ProMax_v1.0.docx" target="_blank">
-   <img src="https://shields.io" alt="Word">
+   <img src="https://shields.io" alt="Ficha Tecnica en el Word">
 </a>
 
  <img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/804247bda36f93b03bd497e8750f9f311e5754c8/Screenshot%202026-10-07%20164757.png">
