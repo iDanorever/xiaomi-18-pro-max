@@ -22,7 +22,7 @@ A continuación se muestran los detalles visuales de la interfaz y configuracion
 
 <table>
   <tr>
-    <td><img src="https://github.com" width="100%" alt="Captura 1"></td>
+    <td><img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/1750714a219aecfd2238948d9b92c56fa3b0c8c4/Screenshot%202026-10-07%20164757.png)" width="100%" alt="Captura 1"></td>
     <td><img src="https://github.com" width="100%" alt="Captura 2"></td>
   </tr>
   <tr>
