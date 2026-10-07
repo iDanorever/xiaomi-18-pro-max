@@ -27,7 +27,7 @@ A continuación se muestran los detalles visuales de la interfaz y configuracion
   </tr>
   <tr>
     <td><img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/65364e082db54401b43b163bef1a60b63ae7c6fc/Screenshot%202026-10-07%20164834.png" width="100%" alt="Captura 3"></td>
-    <td><img src="https://github.com" width="100%" alt="Captura 4"></td>
+    <td><img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/6916ba7f85f7f05ab7f0ec6d1f88049113ff0db3/Screenshot%202026-10-07%20164846.png" width="100%" alt="Captura 4"></td>
   </tr>
 </table>
 
