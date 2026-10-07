@@ -1,21 +1,35 @@
 
  
-   # xiaomi 18-pro-max v1.5
--- en proceso --
- 
- (imagenes nuevas y cambios de telefono )
- 
- # xiaomi-18-pro-max v1.0
+# 📱 Xiaomi 18 Pro Max
 
- 
- <a href="./Documentacion_Tecnica_Xiaomi18ProMax_v1.0.docx" target="_blank">
+> **Estado del proyecto:** ⚠️ `v1.5 en desarrollo` — Agregando nuevos cambios de teléfono y actualizando galería de imágenes.
+
+---
+
+## 🛠️ Versión Actual: v1.0
+
+Aquí puedes consultar y descargar toda la información técnica oficial del dispositivo:
+
+<a href="./Documentacion_Tecnica_Xiaomi18ProMax_v1.0.docx" target="_blank">
    <img src="https://shields.io" alt="Ficha Tecnica en el Word">
 </a>
 
- <img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/804247bda36f93b03bd497e8750f9f311e5754c8/Screenshot%202026-10-07%20164757.png">
- <img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/c4712621dfe193e62f8b3d2e01c937f4ea26cc32/Screenshot%202026-10-07%20164806.png">
- <img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/cd7452a636954727eb6cbf2d65e719fa3e6bff79/Screenshot%202026-10-07%20164834.png">
-<img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/cdcaf3c0a474b3fc40c0d94123c91aa01a820419/Screenshot%202026-10-07%20164846.png">
- 
+---
 
-  
+## 📸 Galería de Capturas
+
+A continuación se muestran los detalles visuales de la interfaz y configuraciones del sistema:
+
+<table>
+  <tr>
+    <td><img src="https://github.com" width="100%" alt="Captura 1"></td>
+    <td><img src="https://github.com" width="100%" alt="Captura 2"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com" width="100%" alt="Captura 3"></td>
+    <td><img src="https://github.com" width="100%" alt="Captura 4"></td>
+  </tr>
+</table>
+
+---
+ Hecho con ❤️ para la comunidad de Xiaomi.
