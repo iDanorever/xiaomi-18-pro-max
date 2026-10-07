@@ -7,7 +7,7 @@
  
  # xiaomi-18-pro-max v1
 
-  ( imagenes proceso)
+ 
   <a href="https://github.com/iDanorever/xiaomi-18-pro-max/blob/806d56192e77e6c0f6060208d102f51d721a671f/Documentacion_Tecnica_Xiaomi18ProMax_v1.0.docx)">Descargar Documento de Word </a>
 
  <img src="https://github.com/iDanorever/xiaomi-18-pro-max/blob/804247bda36f93b03bd497e8750f9f311e5754c8/Screenshot%202026-10-07%20164757.png">
